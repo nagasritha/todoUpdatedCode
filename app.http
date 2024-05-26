@@ -1,0 +1,35 @@
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+  "username": "n",
+  "name": "Naga",
+  "password": "na4",
+  "gender": "female",
+  "location": "hindupur"
+}
+###
+
+GET http://localhost:3000/
+###
+
+POST http://localhost:3000/usersGroup
+Content-Type: application/json
+
+{"first_name":"Rancell","last_name":"Petracchi","email":"rpetracchi3c@hubpages.com","gender":"Bigender","avatar":"https://robohash.org/ullamsaepemollitia.png?size=50x50&set=set1","domain":"Business Development","available":false}
+
+###
+DELETE http://localhost:3000/delete/
+###
+
+DELETE http://localhost:3000/deleteFromGroup/1
+###
+
+GET http://localhost:3000/user/Robin
+###
+
+GET http://localhost:3000/users/?limit=100&offset=110
+###
+
+PUT http://localhost:3000/users/3
+Content-Type: application/json
