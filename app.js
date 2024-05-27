@@ -141,7 +141,6 @@ app.post("/usersGroup", async (request, response) => {
   } = request.body;
   const firstName = first_name;
   const lastName = last_name;
-  console.log(firstName, lastName, email, gender, avatar, domain, available);
   const query1 = `
   SELECT * FROM selfGroup WHERE email='${email}'`;
   const resolve = await database.get(query1);
@@ -155,7 +154,7 @@ app.post("/usersGroup", async (request, response) => {
           '${firstName}','${lastName}','${email}','${gender}','${avatar}','${domain}',${available})
       
       `;
-    const dataResponse = await database.run(insertionQuery);
+    await database.run(insertionQuery);
     response.send({ message: "added successfully" });
   }
 });
@@ -183,9 +182,10 @@ app.delete("/deleteFromGroup/:id", async (request, response) => {
 //fetches the user with his name
 app.get("/user/:name", async (request, response) => {
   const { name } = request.params;
+  let nameLowercase = name.toLocaleLowerCase();
   const query = `
-    SELECT * FROM todo WHERE first_name LIKE '%${name}%' `;
-  const fetchedData = await database.get(query);
+    SELECT * FROM todo WHERE first_name LIKE '%${nameLowercase}%' `;
+  const fetchedData = await database.all(query);
   response.send(fetchedData);
 });
 
